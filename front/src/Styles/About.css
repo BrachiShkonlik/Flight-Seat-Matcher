@@ -1,0 +1,75 @@
+.main-content {
+    padding-top: 80px; /* Slightly more than the navbar height to ensure clear spacing */
+}
+
+.container {
+    /* Ensure the container allows for horizontal wrapping */
+    display: flex;
+    flex-direction: row;  /* Changed from column to row */
+    flex-wrap: wrap;      /* Allows items to wrap if screen is not wide enough */
+    align-items: flex-start;  /* Aligns items at the start of the container */
+    justify-content: center;  /* Centers items horizontally */
+    gap: 20px;
+}
+
+.find-your-seat, .how-it-works, .featured-flyers {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 300px;  /* Gives each section flexibility to grow and base width */
+    min-width: 300px;  /* Minimum width for each section */
+    max-width: 100%;   /* Ensures sections do not overflow the viewport width */
+}
+
+.steps, .testimonials {
+    display: flex;
+    flex-direction: column; /* Aligns step/testimonial items vertically */
+    gap: 10px;
+}
+
+.steps div, .testimonials div {
+    background: #f3f4f6;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center; /* Centers the text inside each step/testimonial */
+}
+
+.testimonials div {
+    border: 1px solid #ccc;
+}
+
+.large_icon {
+    color: #00679e;
+    font-size: xx-large;
+}
+
+button {
+    background-color: #0284c7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0369a1;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.steps div {
+    background: #f3f4f6;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+
+
+
+

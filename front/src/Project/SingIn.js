@@ -1,3 +1,75 @@
+// import React, { useEffect } from 'react';
+// import { useForm } from 'react-hook-form';
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import * as yup from 'yup';
+// import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from "react-redux";
+// import axios from "axios";
+// import { setPassenger } from '../Redux/Actions/passengerAction';
+// import '../Styles/Login.css';
+
+// function Signin() {
+//   useEffect(() => {
+//     document.title = 'רישום';
+//   }, []);
+
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+
+//   const schema = yup.object().shape({
+//     email: yup.string().required(),
+//     password: yup.string().required("Your password is required").min(5).max(20),
+//   });
+
+//   const { register, handleSubmit, formState: { errors } } = useForm({
+//     resolver: yupResolver(schema),
+//   });
+
+//   const onSubmit = (data) => { SigninPassenger(data); }
+
+//   const SigninPassenger = async (data) => {
+//     let url = `http://localhost:5170/api/PassengerWithFlight/getPassenger`;
+//     await axios
+//       .post(url, data)
+//       .then((response) => {
+//         if (response.data.length !== 0) {
+//           dispatch(setPassenger(response.data));
+//           navigate("/show-flights");
+//         } else { 
+//           alert("אופסססס, יש לך טעות בשם משתמש או בסיסמא. \n נסה שנית או הירשם");
+//         }
+//       })
+//       .catch((error) => {
+//         if (error.response.status === 400) navigate("/error400");
+//         if (error.response.status === 500) navigate("/error500");
+//       });
+//   }
+
+//   return (
+//     <div className='login-container'>
+//       <h1>Welcome Back</h1>
+//       <p>Sign in to access your account and manage your flight bookings.</p>
+//       <form onSubmit={handleSubmit(onSubmit)}>
+//         <input type="email" placeholder="Email address" {...register("email")} />
+//         <p>{errors.email?.message}</p>
+//         <input type="password" placeholder="Password" {...register("password")} />
+//         <p>{errors.password?.message}</p>
+//         <div className='remember-me'>
+//           <input type="checkbox" id="remember-me" />
+//           <label htmlFor="remember-me">Remember me</label>
+//           <a href="#">Forgot Password?</a>
+//         </div>
+//         <button type="submit">Sign In</button>
+//       </form>
+//       <div className="text-center">
+//         <p>Not a member? <a href="" onClick={() => { navigate("/register") }}>Register</a></p>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Signin;
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -35,33 +107,6 @@ function Signin() {
 
   const onSubmit = (data) => { SigninPassenger(data); }
 
-  // const SigninPassenger = async (data) => {
-  //   debugger
-  //   let url = `http://localhost:5170/api/PersonalDetails/getPersonalDetails`;
-  //   await axios
-  //     .post(url, data)
-  //     .then(async (response) => {
-  //       if (response.data.length !== 0) {
-  //         dispach(setUser(response.data));
-  //         url = `http://localhost:5170/api/Passengeres/-`;
-  //         await axios
-  //           .post(url, data)
-  //           .then((response) => {
-  //             debugger
-  //             if (response.data.length !== 0) {
-  //               dispach(setPassenger(response.data));
-  //             } navigate("/show-flights");
-  //           }).catch((error) => {
-  //             if (error.response.status === 400) navigate("/error400")
-  //             if (error.response.status === 500) navigate("/error500")
-  //           })
-  //       } else { alert("אופסססס, יש לך טעות בשם משתמש או בסיסמא. \n נסה שנית או הירשם") }
-  //     }
-  //     ).catch((error) => {
-  //       if (error.response.status === 400) navigate("/error400")
-  //       if (error.response.status === 500) navigate("/error500")
-  //     })
-  // }
 
 
 

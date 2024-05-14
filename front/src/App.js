@@ -18,7 +18,7 @@ import EditFlight from './Project/EditFlight';
 import Error500 from './Project/Error500';
 import Error400 from './Project/Error400';
 import Scheduler from './Project/Scheduler';
-import Home from './Project/Home';
+import About from './Project/About';
 import { Edit } from './Project/Edit';
 import Try from './Project/BringThemHome';
 
@@ -44,9 +44,10 @@ function App() {
               <Route exact path="/error400" element={<Error400 />}></Route>
               <Route exact path="/scheduler" element={<Scheduler />}></Route>
               <Route exact path="/edit-personl-details" element={<EditDetails />}></Route>
-              <Route exact path="/home-page" element={<Home />}></Route>
+              {/* <Route exact path="/home-page" element={<Home />}></Route> */}
               <Route exact path="/edit--" element={<Edit />}></Route>
               <Route exact path="/Try" element={<Try />}></Route>
+              <Route exact path='/about-us' element={<About />}></Route>
             </Routes>
           </BrowserRouter>
         </Provider>
