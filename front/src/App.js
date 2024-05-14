@@ -21,6 +21,7 @@ import Scheduler from './Project/Scheduler';
 import About from './Project/About';
 import { Edit } from './Project/Edit';
 import Try from './Project/BringThemHome';
+import { HomePage } from './Project/HomePage';
 
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
               <Route exact path="/error400" element={<Error400 />}></Route>
               <Route exact path="/scheduler" element={<Scheduler />}></Route>
               <Route exact path="/edit-personl-details" element={<EditDetails />}></Route>
-              {/* <Route exact path="/home-page" element={<Home />}></Route> */}
+              <Route exact path="/home-page" element={<HomePage />}></Route>
               <Route exact path="/edit--" element={<Edit />}></Route>
               <Route exact path="/Try" element={<Try />}></Route>
               <Route exact path='/about-us' element={<About />}></Route>
