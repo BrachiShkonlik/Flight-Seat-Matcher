@@ -33,7 +33,7 @@ function App() {
               <Route exact path="/" element={<SingIn />}>  </Route>
               <Route exact path="/show-flights" element={<ShowFlights />}>  </Route>
               <Route exact path="/SingIn" element={<SingPassenger />}>  </Route>
-              <Route exact path="/private-area" element={<PrivateArea />}>  </Route>
+              {/* <Route exact path="/private-area" element={<PrivateArea />}>  </Route> */}
               <Route exact path="/show-details" element={<ShowDetails />}>  </Route>
               <Route exact path="/add-flight" element={<AddFlight />}>  </Route>
               <Route exact path="/my-profile" element={<Profile />}>  </Route>

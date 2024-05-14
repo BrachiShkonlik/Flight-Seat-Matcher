@@ -17,7 +17,7 @@ export function Navbar1() {
           <Nav.Link onClick={() => navigate("/home-page")}>Home</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={() => navigate("/flights")}>Flights</Nav.Link>
+          <Nav.Link onClick={() => navigate("/show-flights")}>Flights</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link onClick={() => navigate("/seats")}>Seats</Nav.Link>
