@@ -1,22 +1,21 @@
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { FiTrash2 } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa";
 import { Navbar1 } from '../Project/Navbar1';
-import Button from 'react-bootstrap/Button';
-import { GrEdit } from "react-icons/gr";
-import '../Styles/ShowFlight.css';
 import { setPassenger } from '../Redux/Actions/passengerAction';
+import FlightCard from './FlightCard';
+import '../Styles/ShowFlight.css';
 
-function ShowFlights() {
+const ShowFlights = () => {
     const passenger = useSelector((state) => state.passengerReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const dataToTransfer = {};
-    dataToTransfer.flightRegistration = {};
-    dataToTransfer.userData = {};
+    const [editableFlight, setEditableFlight] = useState(null);
+    const [editedFlight, setEditedFlight] = useState({});
+    const [isUpdated, setIsUpdated] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     useEffect(() => {
         document.title = 'הטיסות שלי';
@@ -51,11 +50,68 @@ function ShowFlights() {
             });
     };
 
+    const editPass = async (data) => {
+        let url = `http://localhost:5170/api/PassengerWithFlight/updateFlight`;
+        data.flightRegistration.flightCode = editableFlight;
+        data.flightRegistration.preferred = editedFlight.preferred;
+        data.flightRegistration.favoriteSomeoneFirstName = editedFlight.favoriteSomeoneFirstName;
+        data.flightRegistration.favoriteSomeoneLastName = editedFlight.favoriteSomeoneLastName;
+        data.user = {};
+        data.user.password = passenger.password;
+        data.user.email = passenger.email;
+        data.user.flightCode = editableFlight;
+        await axios.post(url, data)
+            .then(async (response) => {
+                setIsUpdated(response.data);
+                setSuccessMessage('Edit successful!');
+                url = `http://localhost:5170/api/PassengerWithFlight/getPassenger`;
+                data = {};
+                data.password = passenger.password;
+                data.email = passenger.email;
+                setTimeout(async function() {
+                    await axios.post(url, data)
+                        .then((response) => {
+                            if (response.data.length !== 0) {
+                                dispatch(setPassenger(response.data));
+                            }
+                            navigate("/show-flights");
+                        })
+                }, 700);
+            }).catch((error) => {
+                if (error.response.status === 400) navigate("/error400");
+                if (error.response.status === 500) navigate("/error500");
+            });
+    };
+
+    const handleEditClick = (flight) => {
+        setEditableFlight(flight.flightCode);
+        setEditedFlight(flight);
+    };
+
+    const handleSaveClick = async (flightCode) => {
+        const data = {
+            flightRegistration: {
+                ...editedFlight
+            }
+        };
+        await editPass(data);
+        setEditableFlight(null);
+    };
+
+    const handleInputChange = (e, field) => {
+        setEditedFlight({ ...editedFlight, [field]: e.target.textContent });
+    };
+
     return (
         <>
             <Navbar1 />
             <div className="container">
                 <main className="main-content">
+                    {successMessage && (
+                        <div className="alert alert-success">
+                            {successMessage}
+                        </div>
+                    )}
                     {passenger.flightsRegistration.length === 0 ? (
                         <div id="noFlights">
                             <h1><br /></h1>
@@ -65,33 +121,15 @@ function ShowFlights() {
                     ) : (
                         <div>
                             {passenger.flightsRegistration.map((p) => (
-                                <div key={p.flightCode} className="flight-card">
-                                    <div className="flight-info">
-                                        <p>{p.flight.exit} to {p.flight.target}</p>
-                                        <p>Departure: {p.flight.date}</p>
-                                    </div>
-                                    <div className="seat-info">
-                                        <p>Seat {p.seat}</p>
-                                        {p.favoriteSomeoneFirstName || p.favoriteSomeoneLastName ? (
-                                            <p>אני רוצה לשבת ליד {p.favoriteSomeoneFirstName} {p.favoriteSomeoneLastName}</p>
-                                        ) : null}
-                                        {p.preferred ? (
-                                            <p>אני רוצה {p.preferred}</p>
-                                        ) : null}
-                                    </div>
-                                    <div className="flight-time">
-                                        <Button variant="light" data-mdb-toggle="tooltip" title="מחיקת הטיסה" onClick={() => deletePass(p)}>
-                                            <FiTrash2 className="trashButton" />
-                                        </Button>
-                                        <Button variant="light" data-mdb-toggle="tooltip" title="עריכה" onClick={() => {
-                                            dataToTransfer.flightRegistration = p;
-                                            dataToTransfer.userData = passenger;
-                                            navigate('/edit--', { state: dataToTransfer });
-                                        }}>
-                                            <GrEdit />
-                                        </Button>
-                                    </div>
-                                </div>
+                                <FlightCard
+                                    key={p.flightCode}
+                                    flight={p}
+                                    editable={editableFlight === p.flightCode}
+                                    onDelete={deletePass}
+                                    onEdit={handleEditClick}
+                                    onSave={handleSaveClick}
+                                    onInputChange={handleInputChange}
+                                />
                             ))}
                             <div className="container">
                                 <a className="plusBtn" onClick={() => navigate("/add-flight")}>
@@ -123,6 +161,6 @@ function ShowFlights() {
             </div>
         </>
     );
-}
+};
 
 export default ShowFlights;
