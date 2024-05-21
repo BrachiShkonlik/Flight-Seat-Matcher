@@ -68,7 +68,7 @@ const ShowFlights = () => {
                 data = {};
                 data.password = passenger.password;
                 data.email = passenger.email;
-                setTimeout(async function() {
+                setTimeout(async function () {
                     await axios.post(url, data)
                         .then((response) => {
                             if (response.data.length !== 0) {

@@ -7,8 +7,8 @@ const FlightCard = ({ flight, onDelete, onEdit, editable, onSave, onInputChange 
     return (
         <div className="flight-card">
             <div className="flight-info">
-                <p>{flight.flight.exit} to {flight.flight.target}</p>
-                <p>Departure: {flight.flight.date}</p>
+                <p>שיוצאת מ{flight.flight.exit} ל{flight.flight.target}</p>
+                <p>בתאריך {flight.flight.date}</p>
             </div>
             <div className="seat-info">
                 <p>Seat {flight.seat}</p>
