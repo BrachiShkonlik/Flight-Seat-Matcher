@@ -67,8 +67,8 @@ function ShowFlights() {
                             {passenger.flightsRegistration.map((p) => (
                                 <div key={p.flightCode} className="flight-card">
                                     <div className="flight-info">
-                                        <p>{p.flight.exit} to {p.flight.target}</p>
-                                        <p>Departure: {p.flight.date}</p>
+                                        <p>שיוצאת מ{p.flight.target} ל{p.flight.exit}</p>
+                                        <p>{p.flight.date} בתאריך </p>
                                     </div>
                                     <div className="seat-info">
                                         <p>Seat {p.seat}</p>
