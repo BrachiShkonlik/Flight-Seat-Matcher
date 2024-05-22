@@ -20,13 +20,13 @@ export function Navbar1() {
           <Nav.Link onClick={() => navigate("/show-flights")}>Flights</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={() => navigate("/seats")}>Seats</Nav.Link>
+          <Nav.Link onClick={() => navigate("/my-profile")}>Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link onClick={() => navigate("/about-us")}>About</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={() => navigate("/contact")}>Contact</Nav.Link>
+          <Nav.Link onClick={() => navigate("/edit-personl-details")}>Edit Details</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link onClick={() => navigate("/deals")}>Deals</Nav.Link>

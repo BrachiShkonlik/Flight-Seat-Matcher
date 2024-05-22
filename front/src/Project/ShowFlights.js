@@ -149,13 +149,12 @@ const ShowFlights = () => {
                             <i className="fas fa-user-circle"></i>
                         </div>
                         <div className="profile-info">
-                            <h2>John Doe</h2>
-                            <p>Upcoming Flights</p>
+                            <h2>{passenger.firstName}  {passenger.lastName}</h2>
+                            <p>טיסות קרובות</p>
                         </div>
                     </div>
                     <div className="buttons">
-                        <button className="total-flights">Total Flights: {passenger.flightsRegistration.length}</button>
-                        <button className="manage-trips" onClick={() => navigate("/manage-trips")}>Manage Trips</button>
+                        <button className="total-flights">סך כל הטיסות: {passenger.flightsRegistration.length}</button>
                     </div>
                 </aside>
             </div>

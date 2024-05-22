@@ -152,7 +152,8 @@ public class PassengerWithFlightRepository : IPassengerWithFlightRepository
         {
             // TODO: check if passengers number == flight.Flight.NumberPlaces
             List<PassengerWithFlight> passengers = await GetPassengersByFlightCodeAsync(flight.FlightCode);
-            if (passengers.Count == flight.Flight.NumberPlaces) { return false; }
+            Flight f = await FlightCollection.Find(fl => fl.FlightCode == flight.FlightCode).FirstOrDefaultAsync();
+            if (passengers.Count == f.NumberPlaces) { return false; }
             PassengerWithFlight p = await PassengerCollection.Find(pass => pass.Email == details[0] && pass.Password == details[1]).FirstOrDefaultAsync();
             if (p != null)
             {

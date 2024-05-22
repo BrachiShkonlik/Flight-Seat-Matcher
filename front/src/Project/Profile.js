@@ -20,8 +20,6 @@ export function Profile() {
         <>
             <Navbar1></Navbar1>
             <BringThemHome></BringThemHome>
-            <h1 className="white" >**</h1>
-            <h1 className="white">**</h1>
             <div class="page-content page-container" id="page-content">
                 <div class="padding">
                     <div class="row container d-flex justify-content-center">

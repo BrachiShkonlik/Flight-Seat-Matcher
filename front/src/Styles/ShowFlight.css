@@ -158,3 +158,66 @@ body {
 .plusBtn__text {
     font-size: 24px;
 }
+
+.flight-card {
+    background-color: #f0f4f8;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.button-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.button-section button {
+    margin-bottom: 10px;
+}
+
+.flight-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px; /* Adjust this value based on your design needs */
+}
+
+.flight-section {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 0 10px;
+    position: relative;
+}
+
+.flight-section:last-child {
+    border-bottom: none;
+}
+
+.flight-info,
+.seat-info,
+.flight-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.flight-info p,
+.seat-info p,
+.flight-time p {
+    margin: 0;
+    text-align: center;
+}
+
+.icon-right {
+    position: absolute;
+    right: 10px;
+}
