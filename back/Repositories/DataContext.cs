@@ -11,7 +11,7 @@ public class DataContext : IDataContext
 
     public DataContext()
     {
-        MongoClient dbPlaceMatching = new MongoClient("connection string");
+        MongoClient dbPlaceMatching = new MongoClient("mongodb+srv://b0533104431:placematching@placematchingdb.gpjuhxr.mongodb.net/");
         db = dbPlaceMatching.GetDatabase("placeMatchingDB");
         PassengerCollection = db.GetCollection<Passenger>("passengers");
         PassengerWithFlightCollection = db.GetCollection<PassengerWithFlight>("PassengersWithFlights");
